@@ -1,28 +1,28 @@
 version: '3.3'
 services:
-  wordpress:
-    image: wordpress
+  joomla:
+    image: joomla:latest
     restart: always
     links:
-      - wordpressdb:mysql
+      - joomladb:mysql
     ports:
       - "8080:80"
     working_dir: /var/www/html
     volumes:
       - "/opt/wp-content:/var/www/html/wp-content"
     environment:
-      WORDPRESS_DB_HOST: wordpressdb:3306
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wordpress
-      WORDPRESS_DB_NAME: wordpress
+      JOOMLA_DB_HOST: joomladb:3306
+      JOOMLA_DB_USER: joomla
+      JOOMLA_DB_PASSWORD: joomla
+      JOOMLA_DB_NAME: joomla
 
-  wordpressdb:
+  joomladb:
     image: mariadb:latest
     restart: always
     volumes:
       - "/opt/mysql:/var/lib/mysql"
     environment:
       MYSQL_ROOT_PASSWORD: secret
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpress
+      MYSQL_DATABASE: joomla
+      MYSQL_USER: joomla
       MYSQL_PASSWORD: wordpress
